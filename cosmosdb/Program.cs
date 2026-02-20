@@ -27,7 +27,7 @@ try
 {
     // CREATE A DATABASE IF IT DOESN'T ALREADY EXIST
     Database database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-Console.WriteLine($"Created or retrieved database: {database.Id}");
+    Console.WriteLine($"Created or retrieved database: {database.Id}");
 
 
     // CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY
@@ -35,16 +35,16 @@ Console.WriteLine($"Created or retrieved database: {database.Id}");
     id: containerName,
     partitionKeyPath: "/id"
 );
-Console.WriteLine($"Created or retrieved container: {container.Id}");
+    Console.WriteLine($"Created or retrieved container: {container.Id}");
 
 
     // DEFINE A TYPED ITEM (PRODUCT) TO ADD TO THE CONTAINER
     Product newItem = new Product
-{
-    id = Guid.NewGuid().ToString(), // Generate a unique ID for the product
-    name = "Sample Item",
-    description = "This is a sample item in my Azure Cosmos DB exercise."
-};
+    {
+        id = Guid.NewGuid().ToString(), // Generate a unique ID for the product
+        name = "Sample Item",
+        description = "This is a sample item in my Azure Cosmos DB exercise."
+    };
 
 
     // ADD THE ITEM TO THE CONTAINER
@@ -53,8 +53,8 @@ Console.WriteLine($"Created or retrieved container: {container.Id}");
     partitionKey: new PartitionKey(newItem.id)
 );
 
-Console.WriteLine($"Created item with ID: {createResponse.Resource.id}");
-Console.WriteLine($"Request charge: {createResponse.RequestCharge} RUs");
+    Console.WriteLine($"Created item with ID: {createResponse.Resource.id}");
+    Console.WriteLine($"Request charge: {createResponse.RequestCharge} RUs");
 
 
 }
